@@ -68,9 +68,9 @@ int lastECO2 = CO2_DEFAULT;
 
 /*Notizen
 
-  bei großer Abweichung erneut messen und wenn Wert wahr, langsamen Übergang der LEDs mit for-Schleife
-  Delays verkürzen
-  ersten wert löschen, da immer 0
+  - LEDs vorerst nicht blau.
+  - Erstes Measurement 0, vorher nur 0 als Ausgabe
+  - Blinken und Piepen gleichzeitig
 
 */
 
@@ -99,7 +99,9 @@ void setup()
 
 void loop()
 {
+  digitalWrite(SENSOR_WAKE_PIN, HIGH);
   int eCO2 = checkMeasurementECO2();
+  digitalWrite(SENSOR_WAKE_PIN, LOW);
   Serial.print("Measurement: ");
   Serial.println(eCO2);
   uint32_t color = getColor(eCO2);

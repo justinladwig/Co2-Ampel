@@ -43,8 +43,8 @@
 
 #define CO2_DEFAULT 400
 
-#define CO2_ACC_ALERT 1800
-#define CO2_VIS_ALERT 1500
+#define CO2_ACC_ALERT 1700
+#define CO2_VIS_ALERT 1400
 
 #define CO2_LOOP_DELAY 1000
 
@@ -52,9 +52,9 @@
 #define CO2_MEASURE_AMOUNT 5
 #define CO2_MEASURE_DELAY 1000
 
-#define BEEP_DURATION 1000
-#define BEEP_AMOUNT 2
-#define BLINK_DURATION 1000
+#define BEEP_DURATION 500
+#define BEEP_AMOUNT 3
+#define BLINK_DURATION 500
 #define BLINK_AMOUNT 5
 
 //Deklariern des Led-Objekts
@@ -99,9 +99,7 @@ void setup()
 
 void loop()
 {
-  digitalWrite(SENSOR_WAKE_PIN, HIGH);
   int eCO2 = checkMeasurementECO2();
-  digitalWrite(SENSOR_WAKE_PIN, LOW);
   Serial.print("Measurement: ");
   Serial.println(eCO2);
   uint32_t color = getColor(eCO2);
@@ -163,6 +161,7 @@ int checkMeasurementECO2()
 
 int measureECO2()
 {
+  digitalWrite(SENSOR_WAKE_PIN, LOW);
   if (ccs.available())
   {
     if (!ccs.readData())
@@ -179,6 +178,7 @@ int measureECO2()
   {
     return 0;
   }
+  digitalWrite(SENSOR_WAKE_PIN, HIGH);
 }
 
 uint32_t getColor(int eCO2)

@@ -1,11 +1,8 @@
-#include <Adafruit_CCS811.h>
-
 /* This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details. */
-#include <bsec.h>
-#include <Wire.h>
+ 
 #include <Ticker.h>
 
 IPAddress myOwnIP; // ownIP for mDNS 
